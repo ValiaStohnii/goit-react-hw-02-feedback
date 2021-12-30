@@ -7,22 +7,42 @@ class Feedback extends React.Component {
     bad: 0,
   };
 
-  handleIncrement = e => {
-    console.log(e);
+  goodIncrement = () => {
+    this.setState(prevState => {
+      return {
+        good: prevState.good + 1,
+      };
+    });
   };
+  neutralIncrement = () => {
+    this.setState(prevState => {
+      return {
+        neutral: prevState.neutral + 1,
+      };
+    });
+  };
+  badIncrement = () => {
+    this.setState(prevState => {
+      return {
+        bad: prevState.bad + 1,
+      };
+    });
+  };
+
+  countTotalFeedback = () => {};
 
   render() {
     return (
       <div>
         <h2>Please leave feedback</h2>
         <div>
-          <button type="button" onClick={this.handleIncrement}>
+          <button type="button" onClick={this.goodIncrement}>
             Good
           </button>
-          <button type="button" onClick={this.handleIncrement}>
+          <button type="button" onClick={this.neutralIncrement}>
             Neutral
           </button>
-          <button type="button" onClick={this.handleIncrement}>
+          <button type="button" onClick={this.badIncrement}>
             Bad
           </button>
         </div>
