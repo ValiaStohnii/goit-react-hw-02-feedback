@@ -7,7 +7,6 @@ class Feedback extends React.Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0,
   };
 
   goodIncrement = () => {
@@ -35,16 +34,14 @@ class Feedback extends React.Component {
     this.countTotalFeedback();
   };
 
-  countTotalFeedback = () => {
-    this.setState(state => {
-      const values = Object.values(state);
-      let total = 0;
-      for (let value of values) {
-        total = total + value;
-      }
-      console.log(total);
-      return total;
-    });
+  countTotalFeedback = state => {
+    const values = Object.values(state);
+    let total = 0;
+    for (let value of values) {
+      total = total + value;
+    }
+    console.log(total);
+    return total;
   };
 
   render() {
@@ -62,7 +59,7 @@ class Feedback extends React.Component {
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
-          total={this.state.total}
+          total={this.countTotalFeedback(this.state)}
           // positivePercentage={this.state}
         />
       </div>
