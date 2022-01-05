@@ -44,19 +44,15 @@ class Feedback extends React.Component {
     for (let value of values) {
       total = total + value;
     }
-
     return total;
   };
 
   countPositiveFeedbackPercentage = state => {
-    const values = Object.values(state);
-    let a = 0;
-    let b = 0;
-    for (let value of values) {
-      a = value.good * 100;
-      b = a / value.total;
-    }
-    console.log(b);
+    let a = this.state.good;
+    console.log(a);
+    let total = this.countTotalFeedback(state);
+    console.log(total);
+    let b = (a * 100) / total;
     return b;
   };
 
