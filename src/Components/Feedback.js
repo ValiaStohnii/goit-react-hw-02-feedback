@@ -1,6 +1,7 @@
 import React from 'react';
 import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions';
+import Section from './Section';
 
 class Feedback extends React.Component {
   state = {
@@ -40,28 +41,40 @@ class Feedback extends React.Component {
     for (let value of values) {
       total = total + value;
     }
-    console.log(total);
     return total;
+  };
+
+  countPositiveFeedbackPercentage = state => {
+    const val = Object.val(state);
+    let a = 0;
+    let b = 0;
+    for (let v of val) {
+      a = v.good * 100;
+      b = a / v.total;
+    }
+    console.log(b);
+    return b;
   };
 
   render() {
     return (
       <div>
-        <h2>Please leave feedback</h2>
-        <FeedbackOptions
-          onGood={this.goodIncrement}
-          onNeutral={this.neutralIncrement}
-          onBad={this.badIncrement}
-        />
-
-        <h2>Statistics</h2>
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback(this.state)}
-          // positivePercentage={this.state}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            onGood={this.goodIncrement}
+            onNeutral={this.neutralIncrement}
+            onBad={this.badIncrement}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback(this.state)}
+            positivePercentage={this.countPositiveFeedbackPercentage(this.state)}
+          />
+        </Section>
       </div>
     );
   }
