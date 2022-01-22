@@ -37,7 +37,6 @@ class Feedback extends React.Component {
       <div>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            key={Object.keys(this.state)}
             onLeaveFeedback={this.onLeaveFeedback}
             options={Object.keys(this.state)}
           />
