@@ -10,8 +10,7 @@ class Feedback extends React.Component {
     bad: 0,
   };
 
-  onLeaveFeedback = e => {
-    const name = e.target.name;
+  onLeaveFeedback = name => {
     this.setState(prevState => ({
       [name]: prevState[name] + 1,
     }));
